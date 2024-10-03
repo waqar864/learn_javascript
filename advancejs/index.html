@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events</title>
+</head>
+<body>
+    <h1>Inline Event</h1>
+    <button onclick="alert('hello js')">Greetings</button>
+    <button ondblclick="alert('double click js')">Greetings</button>
+    <button onmouseover="alert('mouseover event')">Greetings</button>
+
+    <h1>dom event handler</h1>
+    <button id="myBtn2">Greetings</button>
+    <button id="myBtn3">Greetings</button>
+
+
+
+
+    <script>
+        const btn1 = document.getElementById('myBtn2');
+        btn1.addEventListener('click', function(){
+            alert("dom event listen");
+            
+        });
+        console.log("clicked",btn1);
+    </script>
+</body>
+</html>
