@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+</head>
+<body>
+    <h1>To Do List</h1>
+    <br />
+    <form action="">
+        <div>
+            <input type="text" id="inputValue">
+            <button class="btn">Add ToDo</button>
+
+        </div>
+        <section class="todo-list-element">
+            <ul>
+
+            </ul>
+        </section>
+    </form>
+
+    <script>
+        const mainTodoElement = document.querySelector('.todo-list-element');
+        const inputValue = document.getElementById('inputValue');
+        const btn = document.querySelector('.btn');
+       
+
+        const getTodoListFromLocal = ()=>{
+            return JSON.parse(localStorage.getItem("todolist"));
+        }
+        let localTodoList = getTodoListFromLocal() || [];
+        const addTodoList = (e)=>{
+            e.preventDefault();
+            
+
+            const todoListValue = inputValue.value.trim();
+            localTodoList = getTodoListFromLocal() || [];
+
+            localTodoList.push(todoListValue);
+            localTodoList = [... new Set(localTodoList)];
+            console.log(localTodoList);
+            localStorage.setItem("todolist",JSON.stringify(localTodoList));
+            const divElement = document.createElement("div");
+            divElement.classList.add("main_todo_div");
+            divElement.innerHTML = `<li>${inputValue.value}</li>
+            <button class="deleteBtn">Delete</button>`;
+            mainTodoElement.append(divElement);
+
+        }
+        const showTodoList = () => {
+            console.log(addTodoList());
+        }
+        btn.addEventListener('click',(e) => {
+            addTodoList(e);
+        });
+
+    </script>
+</body>
+</html>
